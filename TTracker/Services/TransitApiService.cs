@@ -24,6 +24,6 @@ internal class TransitApiService
         {
             return null;
         }
-        //FIGURE OUT HOW TO MAKE THE API ACTUALLY RETURN SOMETHING HERE
+        return await _httpClient.GetFromJsonAsync<TransitApiResponse>($"predictions?filter[route]={line}&filter[stop]={station}&api_key={Constants.API_KEY}&sort=arrival_time");
     }
 }
