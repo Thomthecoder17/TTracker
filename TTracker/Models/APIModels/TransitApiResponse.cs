@@ -11,28 +11,20 @@ namespace TTracker.Models.APIModels;
 public class TransitApiResponse
 {
     [JsonPropertyName("data")]
-    [AllowNull]
     public Data[] Data { get; set; }
 }
 
 public class Data
 {
     [JsonPropertyName("attributes")]
-    [AllowNull]
     public Attributes Attributes { get; set; }
 }
 
 public class Attributes
 {
-    [JsonPropertyName ("arrival_time")]
-    [AllowNull]
+    [JsonPropertyName("arrival_time")]
     public DateTime Arrival_time { get; set; }
 
     [JsonPropertyName("direction_id")]
-    [AllowNull]
     public int Direction_id { get; set; }
-
-    [JsonPropertyName("revenue")]
-    [AllowNull]
-    public string Revenue { get; set; }
 }

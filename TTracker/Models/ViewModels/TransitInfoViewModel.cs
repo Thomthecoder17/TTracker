@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -20,20 +21,16 @@ namespace TTracker.Models.ViewModels
         }
 
         [ObservableProperty]
-        [AllowNull]
         private string line;
 
         [ObservableProperty]
-        [AllowNull]
         private string station;
 
         [ObservableProperty]
-        [AllowNull]
         private DateTime[] status = new DateTime[2];
 
         [ObservableProperty]
-        [AllowNull]
-        private string[] direction = {"none", "none"};
+        private string[] direction = new string[2];
 
         [RelayCommand]
         private async Task FetchTransitInfo()
@@ -43,15 +40,16 @@ namespace TTracker.Models.ViewModels
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    Status[i] = transitApiResponse.Data[i].Attributes.Arrival_time;
+                    this.Status[i] = transitApiResponse.Data[i].Attributes.Arrival_time;
                     int directionId = transitApiResponse.Data[i].Attributes.Direction_id;
                     if (directionId == 1)
                     {
-                        Direction[i] = "Northbound";
+                        this.Direction[i] = "Northbound";
+
                     }
                     else if (directionId == 0)
                     {
-                        Direction[i] = "Southbound";
+                        this.Direction[i] = "Southbound";
                     }
                 }
             }
