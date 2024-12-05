@@ -21,10 +21,10 @@
                     <Button Text="Fetch" Grid.Column="2" Command="{Binding  FetchTransitInfoCommand}" />
                 </Grid>
             </Border>
-            <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="{Binding Status[0]}" />
-            <Label HorizontalOptions="Center" FontSize="20" TextColor="White" Text="{Binding Direction[0]}" />
-            <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="{Binding Status[1]}" />
-            <Label HorizontalOptions="Center" FontSize="20" TextColor="White" Text="{Binding Direction[1]}" />
+            <Label HorizontalOptions="Center" FontSize="70" Text="{Binding Status[0]}" />
+            <Label HorizontalOptions="Center" FontSize="20" Text="{Binding Direction[0]}" />
+            <Label HorizontalOptions="Center" FontSize="70" Text="{Binding Status[1]}" />
+            <Label HorizontalOptions="Center" FontSize="20" Text="{Binding Direction[1]}" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -36,6 +36,7 @@ namespace TTracker.Models.ViewModels
         private async Task FetchTransitInfo()
         {
             var transitApiResponse = await _transitApiService.GetTransitInfo(Line, Station);
+            Console.WriteLine(transitApiResponse);
             if (transitApiResponse != null)
             {
                 for (int i = 0; i < 2; i++)
