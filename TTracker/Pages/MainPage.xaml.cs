@@ -1,16 +1,14 @@
 ﻿using TTracker.Models.ViewModels;
 
-namespace TTracker
+namespace TTracker;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
-    {
 
-        public MainPage()
-        {
-            InitializeComponent();
+public MainPage()
+{
+    InitializeComponent();
 
-            BindingContext = new TransitInfoViewModel();
-        }
-    }
-
+    BindingContext = new TransitInfoViewModel();
+}
 }

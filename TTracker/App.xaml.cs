@@ -1,4 +1,6 @@
-﻿namespace TTracker
+﻿using TTracker;
+
+namespace TTracker
 {
     public partial class App : Application
     {

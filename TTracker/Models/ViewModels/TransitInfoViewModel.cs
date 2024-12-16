@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -26,37 +27,47 @@ namespace TTracker.Models.ViewModels
         [ObservableProperty]
         private string station;
 
-        [ObservableProperty]
-        private DateTime[] status = new DateTime[2];
+        private ObservableCollection<DateTime> _statuses;
+        public ObservableCollection<DateTime> Statuses
+        {
+            get => _statuses;
+            set => SetProperty(ref _statuses, value);
+        }
 
-        [ObservableProperty]
-        private string[] direction = new string[2];
+        private ObservableCollection<string> _directions;
+        public ObservableCollection<string> Directions
+        {
+            get => _directions;
+            set => SetProperty(ref _directions, value);
+        }
 
         [RelayCommand]
         private async Task FetchTransitInfo()
         {
             var transitApiResponse = await _transitApiService.GetTransitInfo(Line, Station);
+            Statuses = new ObservableCollection<DateTime>();
+            Directions = new ObservableCollection<string>();
             if (transitApiResponse != null)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    this.Status[i] = transitApiResponse.Data[i].Attributes.Arrival_time;
+                    Statuses.Add(transitApiResponse.Data[i].Attributes.Arrival_time);
                     int directionId = transitApiResponse.Data[i].Attributes.Direction_id;
                     if (directionId == 1)
                     {
-                        this.Direction[i] = "Northbound";
+                        Directions.Add("Northbound");
 
                     }
                     else if (directionId == 0)
                     {
-                        this.Direction[i] = "Southbound";
+                        Directions.Add("Southbound");
                     }
                 }
             }
             else
             {
-                Direction[0] = "N/A";
-                Direction[1] = "N/A";
+                Directions.Add("N/A");
+                Directions.Add("N/A");
             }
         }
     }

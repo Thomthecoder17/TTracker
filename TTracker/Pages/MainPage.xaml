@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              x:Class="TTracker.MainPage"
              xmlns:vm="clr-namespace:TTracker.Models.ViewModels"
              x:DataType="vm:TransitInfoViewModel"
@@ -21,11 +22,11 @@
                     <Button Text="Fetch" Grid.Column="2" Command="{Binding  FetchTransitInfoCommand}" />
                 </Grid>
             </Border>
-            <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="{Binding Status[0]}" />
-            <Label HorizontalOptions="Center" FontSize="20" TextColor="White" Text="{Binding Direction[0]}" />
-            <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="{Binding Status[1]}" />
-            <Label HorizontalOptions="Center" FontSize="20" TextColor="White" Text="{Binding Direction[1]}" />
-
+            <HorizontalStackLayout>
+                <ListView ItemsSource="{Binding Statuses}" />
+                <Line/>
+                <ListView ItemsSource ="{Binding Directions}" />
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
