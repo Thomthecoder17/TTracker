@@ -18,12 +18,12 @@ internal class TransitApiService
         _httpClient.BaseAddress = new Uri(Constants.API_BASE_URL);
     }
 
-    public async Task<TransitApiResponse> GetTransitInfo(string line, string station)
+    public async Task<TransitApiResponse> GetTransitInfo(string line, string station, string requestType)
     {
         if (Connectivity.Current.NetworkAccess != NetworkAccess.Internet)
         {
             return null;
         }
-        return await _httpClient.GetFromJsonAsync<TransitApiResponse>($"predictions?filter[route]={line}&filter[stop]={station}&api_key={Constants.API_KEY}&sort=arrival_time");
+        return await _httpClient.GetFromJsonAsync<TransitApiResponse>($"{requestType}?filter[revenue]=revenue&filter[route]={line}&filter[stop]={station}&api_key={Constants.API_KEY}&sort=arrival_time");
     }
 }
