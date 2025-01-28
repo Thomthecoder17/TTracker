@@ -44,15 +44,19 @@ namespace TTracker.Models.ViewModels
         [RelayCommand]
         private async Task FetchTransitInfo()
         {
-            var transitApiResponse = await _transitApiService.GetTransitInfo(Line, Station);
-            Statuses = new ObservableCollection<DateTime>();
+            var transitPredictions = await _transitApiService.GetTransitInfo(Line, Station, "predictions");
+            Statuses = new ObservableCollection<System.TimeSpan>();
             Directions = new ObservableCollection<string>();
-            if (transitApiResponse != null)
+
+            DateTime currentUTC = DateTime.UtcNow;
+            TimeZoneInfo estZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            DateTime currentEST = TimeZoneInfo.ConvertTimeFromUtc(currentUTC, estZone);
+
+            if (transitPredictions != null)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < transitPredictions.Data.Length; i++)
                 {
-                    Statuses.Add(transitApiResponse.Data[i].Attributes.Arrival_time);
-                    int directionId = transitApiResponse.Data[i].Attributes.Direction_id;
+                    int directionId = transitPredictions.Data[i].Attributes.Direction_id;
                     if (directionId == 1)
                     {
                         Directions.Add("Northbound");
@@ -61,6 +65,17 @@ namespace TTracker.Models.ViewModels
                     else if (directionId == 0)
                     {
                         Directions.Add("Southbound");
+                    }
+
+                    DateTime predictedEst = transitPredictions.Data[i].Attributes.Arrival_time;
+                    System.TimeSpan status = predictedEst.Subtract(currentEST);
+                    if (status < System.TimeSpan.Zero)
+                    {
+                        Directions.RemoveAt(0);
+                    }
+                    else
+                    {
+                        Statuses.Add(status);
                     }
                 }
             }

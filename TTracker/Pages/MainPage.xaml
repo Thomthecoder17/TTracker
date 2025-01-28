@@ -9,24 +9,20 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <Border Margin="20">
-                <Grid ColumnSpacing="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Entry Placeholder="Line" Grid.Column="0" Text="{Binding Line}" />
-                    <Entry Placeholder="Station" Grid.Column="1" Text="{Binding Station}" />
-                    <Button Text="Fetch" Grid.Column="2" Command="{Binding  FetchTransitInfoCommand}" />
-                </Grid>
+            <Border Margin="20" StrokeShape="RoundRectangle 10" >
+                <VerticalStackLayout>
+                    <Entry HeightRequest="50" Placeholder="Line" Text="{Binding Line}" />
+                    <Entry HeightRequest="50" Placeholder="Station" Text="{Binding Station}" />
+                    <Button Text="Fetch" Command="{Binding  FetchTransitInfoCommand}" />
+                </VerticalStackLayout>
             </Border>
-            <HorizontalStackLayout>
+            <Border Margin="20" StrokeShape="RoundRectangle 10">
+
+                <FlexLayout JustifyContent="SpaceBetween">
                 <ListView ItemsSource="{Binding Statuses}" />
-                <Line/>
                 <ListView ItemsSource ="{Binding Directions}" />
-            </HorizontalStackLayout>
+                </FlexLayout>
+            </Border>
         </VerticalStackLayout>
     </ScrollView>
 
