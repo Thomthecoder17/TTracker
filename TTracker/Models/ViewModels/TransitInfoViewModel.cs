@@ -27,8 +27,8 @@ namespace TTracker.Models.ViewModels
         [ObservableProperty]
         private string station;
 
-        private ObservableCollection<DateTime> _statuses;
-        public ObservableCollection<DateTime> Statuses
+        private ObservableCollection<System.TimeSpan> _statuses;
+        public ObservableCollection<System.TimeSpan> Statuses
         {
             get => _statuses;
             set => SetProperty(ref _statuses, value);
