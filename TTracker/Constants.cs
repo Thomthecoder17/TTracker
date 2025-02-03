@@ -8,6 +8,6 @@ namespace TTracker;
 
 internal class Constants
 {
-    public const string API_KEY = "87ba0160fb344934876b6950192810ed";
+    public const string API_KEY = "ADD_API_KEY";
     public const string API_BASE_URL = "https://api-v3.mbta.com/";
 }
