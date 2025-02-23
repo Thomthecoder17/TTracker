@@ -1,4 +1,4 @@
-# Overview: <br/>
+# Overview:
 This is a simple app that I am designing to track MBTA trains (and hopefully buses) in and around Boston. 
 
 This app uses the MBTA's API found at https://api-v3.mbta.com/ 
