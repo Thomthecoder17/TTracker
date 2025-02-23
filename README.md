@@ -9,5 +9,8 @@ This app was created using Microsoft's .NET MAUI framework.
 
 To use, make sure to add an API key in the Constants.cs file.
 
+# Platforms:
+This app currently works on Windows. I'm currently working on making it compatible with Android. It still broken with many intermittent bugs on Android. Not tested for IOS and MacOS, since I don't have those devices.
+
 # License:
 TTracker is licensed under the MIT license. See the LICENSE file for more details.
