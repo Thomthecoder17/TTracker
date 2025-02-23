@@ -8,6 +8,7 @@ namespace TTracker;
 
 internal class Constants
 {
-    public const string API_KEY = Environment.GetEnvironmentVariable("API_KEY");
+    //public static readonly string API_KEY = Environment.GetEnvironmentVariable("API_KEY");
+    public const string API_KEY = "ADD_API_KEY";
     public const string API_BASE_URL = "https://api-v3.mbta.com/";
 }
