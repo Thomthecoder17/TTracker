@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:TTracker.Models.ViewModels"
              x:DataType="vm:TransitInfoViewModel"
              Title="Home">
-
+    
     <ScrollView>
         <VerticalStackLayout>
             <Border Margin="20" StrokeShape="RoundRectangle 10" >
@@ -17,10 +17,10 @@
                 </VerticalStackLayout>
             </Border>
             <Border Margin="20" StrokeShape="RoundRectangle 10">
-
+                
                 <FlexLayout JustifyContent="SpaceBetween">
-                <ListView ItemsSource="{Binding Statuses}" />
-                <ListView ItemsSource ="{Binding Directions}" />
+                    <ListView ItemsSource="{Binding Statuses}" />
+                    <ListView ItemsSource ="{Binding Directions}" />
                 </FlexLayout>
             </Border>
         </VerticalStackLayout>

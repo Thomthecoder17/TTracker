@@ -27,6 +27,7 @@ namespace TTracker.Models.ViewModels
         [ObservableProperty]
         private string station;
 
+        //When you figure out what is going on here, add a comment
         private ObservableCollection<System.TimeSpan> _statuses;
         public ObservableCollection<System.TimeSpan> Statuses
         {
@@ -48,7 +49,9 @@ namespace TTracker.Models.ViewModels
             Statuses = new ObservableCollection<System.TimeSpan>();
             Directions = new ObservableCollection<string>();
 
+            //Gets the current UTC and converts it to EST
             DateTime currentUTC = DateTime.UtcNow;
+            //EST is used here since Boston (and therefore the MBTA) is in the EST time zone (honestly doesn't matter since it gives the time UNTIL arrival in the end)
             TimeZoneInfo estZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
             DateTime currentEST = TimeZoneInfo.ConvertTimeFromUtc(currentUTC, estZone);
 
@@ -67,8 +70,13 @@ namespace TTracker.Models.ViewModels
                         Directions.Add("Southbound");
                     }
 
-                    DateTime predictedEst = transitPredictions.Data[i].Attributes.Arrival_time;
+                    //Converts the predicted time (Which happpens to be in the local time zone of the device, not sure why) to EST for the later operations
+                    DateTime predictedTime = transitPredictions.Data[i].Attributes.Arrival_time;
+                    DateTime predictedEst = TimeZoneInfo.ConvertTime(predictedTime, estZone);
+
+                    //Subtracts the current time from the predicted time to give the time until arrival
                     System.TimeSpan status = predictedEst.Subtract(currentEST);
+
                     if (status < System.TimeSpan.Zero)
                     {
                         Directions.RemoveAt(0);
