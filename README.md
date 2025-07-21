@@ -14,3 +14,6 @@ This app currently works on Windows. I'm currently working on making it compatib
 
 # License:
 TTracker is licensed under the MIT license. See the LICENSE file for more details.
+
+# This project has been discontinued.
+It has been replaced by MassTransit.
